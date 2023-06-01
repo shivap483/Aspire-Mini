@@ -6,6 +6,7 @@ import indexRoute from '../routes/index.route';
 import express from 'express';
 import bodyParser from 'body-parser';
 import session from 'express-session';
+import { appConfig } from './app.config';
 const app = express();
 
 
@@ -23,7 +24,7 @@ declare module 'express-session' {
 // to parse json requests
 app.use(bodyParser.json());
 app.use(session({
-    secret: process.env.SESSION_SECRET_KEY,
+    secret: appConfig.sessionSecretKey,
     resave: false,
     saveUninitialized: false
 }))
