@@ -22,11 +22,11 @@ export class Loan extends DatetimeEntity {
     
     @Column({ name: 'paid_amount' }) paidAmount: number;
 
-    @OneToMany( (type) => Repayment, (repayment) => repayment.id ) repayments: Repayment[]
+    @OneToMany( (type) => Repayment, (repayment) => repayment.loan ) repayments: Repayment[]
 
     @ManyToOne(
         (type) => User,
-        (user) => user.id,
+        (user) => user.loans,
     )
-    @JoinColumn({ name: 'user_id' }) user: User
+    @JoinColumn({ name: 'user_id', referencedColumnName: 'id' }) user: User
 }

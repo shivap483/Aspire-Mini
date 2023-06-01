@@ -16,6 +16,6 @@ export class User extends DatetimeEntity {
 
     @Column({ name: 'type' }) type: UserTypes;
 
-    @OneToMany( (type) => Loan, (loan) => loan.id ) loans: Loan[]
+    @OneToMany( (type) => Loan, (loan) => loan.user ) loans: Loan[]
 
 }

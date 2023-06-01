@@ -22,5 +22,5 @@ export class Repayment extends DatetimeEntity {
         (type) => Loan,
         (loan) => loan.repayments,
     )
-    @JoinColumn({ name: 'loan_id' }) loan: Loan
+    @JoinColumn({ name: 'loan_id', referencedColumnName: 'id' }) loan: Loan
 }
