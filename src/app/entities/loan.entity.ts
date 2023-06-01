@@ -2,7 +2,7 @@ import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryColumn } from 
 import { DatetimeEntity } from "./base/base.entity";
 import { Repayment } from "./repayment.entity";
 import { User } from "./user.entity";
-import { LoanStatus } from "../constants/loan.status";
+import { LoanStatus } from "../constants/enums/loan.status";
 import { LoanFrequency } from "../constants/enums/loan.frequency";
 
 @Entity('loan')

@@ -2,7 +2,7 @@ import IController from "IController";
 import { NotFoundError } from "../errors/not.found.error";
 import loanService from "../services/loan.service";
 import userService from "../services/user.service";
-import { UserTypes } from "../constants/user.types";
+import { UserTypes } from "../constants/enums/user.types";
 import repaymentService from "../services/repayment.service";
 
 const createLoan: IController = async (req, res) => {

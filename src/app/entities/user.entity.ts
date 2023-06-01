@@ -1,7 +1,7 @@
 import { Column, Entity, OneToMany, PrimaryColumn } from "typeorm";
 import { DatetimeEntity } from "./base/base.entity";
 import { Loan } from "./loan.entity";
-import { UserTypes } from "../constants/user.types";
+import { UserTypes } from "../constants/enums/user.types";
 
 @Entity('user')
 export class User extends DatetimeEntity {

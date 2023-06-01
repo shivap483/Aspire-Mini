@@ -1,7 +1,7 @@
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm";
 import { DatetimeEntity } from "./base/base.entity";
 import { Loan } from "./loan.entity";
-import { RepaymentStatus } from "../constants/repayment.status";
+import { RepaymentStatus } from "../constants/enums/repayment.status";
 
 @Entity('repayment')
 export class Repayment extends DatetimeEntity {
