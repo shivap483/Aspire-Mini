@@ -43,6 +43,7 @@ const setLoanStatus = async(loan: Loan, action: string) => {
     }
     loan.status = status
 }
+
 const setLoanPaidAmount = async(loan: Loan, amount: number) => {
     loan.paidAmount += amount
 }

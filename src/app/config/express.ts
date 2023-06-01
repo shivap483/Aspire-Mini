@@ -23,7 +23,7 @@ declare module 'express-session' {
 // to parse json requests
 app.use(bodyParser.json());
 app.use(session({
-    secret: 'Your_Secret_Key',
+    secret: process.env.SESSION_SECRET_KEY,
     resave: false,
     saveUninitialized: false
 }))
