@@ -6,12 +6,12 @@ import { NotFoundError } from "../errors/not.found.error"
 import { BadRequestError } from "../errors/bad.request.error"
 import { UserTypes } from "../constants/enums/user.types"
 
-const createUser = async(requestBody: any) => {
+const createUser = async (requestBody: any) => {
     const userModel = {} as UserModel
     const user = await userUtils.mapRequestBodyToUserModel(requestBody, userModel)
 
     const currentUser = await userRepository.getUserByEmail(user.email)
-    if(currentUser) {
+    if (currentUser) {
         throw new DuplicateItemError(`user already exists with email: ${user.email}`)
     }
     const newUser = await userRepository.createUser(user)
@@ -19,34 +19,34 @@ const createUser = async(requestBody: any) => {
     return newUser.id;
 }
 
-const login = async(email: string, password: string) => {
+const login = async (email: string, password: string) => {
     const currentUser = await userRepository.getUserByEmail(email)
-    if(!currentUser){
+    if (!currentUser) {
         throw new NotFoundError(`No user found with email: ${email}`)
     }
-    if(currentUser.password !== password && currentUser.type === UserTypes.USER){
+    if (currentUser.password !== password && currentUser.type === UserTypes.USER) {
         throw new BadRequestError(`Invalid password: ${password}`)
     }
     console.log(`logged in user: ${currentUser.userName}`)
     return currentUser;
 }
 
-const adminLogin = async(email: string, password: string) => {
+const adminLogin = async (email: string, password: string) => {
     const currentUser = await userRepository.getUserByEmail(email)
-    if(!currentUser){
+    if (!currentUser) {
         throw new NotFoundError(`No user found with email: ${email}`)
     }
-    if(currentUser.password !== password){
+    if (currentUser.password !== password) {
         throw new BadRequestError(`Invalid password: ${password}`)
     }
-    if(currentUser.type !== UserTypes.ADMIN_USER){
+    if (currentUser.type !== UserTypes.ADMIN_USER) {
         throw new BadRequestError(`user: ${email} is not admin`)
     }
     console.log(`logged in user: ${currentUser.userName}`)
     return currentUser;
 }
 
-const getUserById =async (userId: number) => {
+const getUserById = async (userId: number) => {
     const user = await userRepository.getUserById(userId)
     return user
 }

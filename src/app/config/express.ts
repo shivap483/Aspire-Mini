@@ -14,11 +14,10 @@ const app = express();
 
 declare module 'express-session' {
     interface SessionData {
-      userId?: number; // Replace with the appropriate type for your userId
-      email?: string;
+        userId?: number; // Replace with the appropriate type for your userId
+        email?: string;
     }
 }
-
 
 
 // to parse json requests

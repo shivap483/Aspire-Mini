@@ -5,37 +5,38 @@ import userService from "../services/user.service";
 import { UserTypes } from "../constants/enums/user.types";
 import repaymentService from "../services/repayment.service";
 
+
 const createLoan: IController = async (req, res) => {
     const userId = req.session.userId;
-    if(!userId) {
+    if (!userId) {
         const err = new NotFoundError(`User not logged in`)
         return res.status(err.statusCode).send(err.message)
     }
     const user = await userService.getUserById(userId)
-    if(!user || user.type !== UserTypes.USER) {
+    if (!user || user.type !== UserTypes.USER) {
         const err = new NotFoundError(`Invalid user. Please login again`)
         return res.status(err.statusCode).send(err.message)
     }
     loanService.createLoan(req.body, userId)
-    .then((loan) => {
-        return res.json({
-            message: "loan created",
-            loanDetails: {...loan}
+        .then((loan) => {
+            return res.json({
+                message: "loan created",
+                loanDetails: { ...loan }
+            })
         })
-    })
-    .catch((err)=> {
-        return res.status(err.statusCode).send(`failed to create loan`)
-    })
+        .catch((err) => {
+            return res.status(err.statusCode).send(`failed to create loan`)
+        })
 }
 
 const getUserLoans: IController = async (req, res) => {
     const userId = req.session.userId
-    if(!userId) {
+    if (!userId) {
         const err = new NotFoundError(`User not logged in`)
         return res.status(err.statusCode).send(err.message)
     }
     const user = await userService.getUserById(userId)
-    if(!user) {
+    if (!user) {
         const err = new NotFoundError(`Invalid user. Please login again`)
         return res.status(err.statusCode).send(err.message)
     }
@@ -45,12 +46,12 @@ const getUserLoans: IController = async (req, res) => {
 
 const getLoans: IController = async (req, res) => {
     const userId = req.session.userId
-    if(!userId) {
+    if (!userId) {
         const err = new NotFoundError(`User not logged in`)
         return res.status(err.statusCode).send(err.message)
     }
     const user = await userService.getUserById(userId)
-    if(!user || user.type !== UserTypes.ADMIN_USER) {
+    if (!user || user.type !== UserTypes.ADMIN_USER) {
         const err = new NotFoundError(`Invalid user. Please login again`)
         return res.status(err.statusCode).send(err.message)
     }
@@ -61,40 +62,41 @@ const getLoans: IController = async (req, res) => {
 const updateLoan: IController = async (req, res) => {
     const userId = req.session.userId
     const user = await userService.getUserById(userId)
-    if(!user || user.type !== UserTypes.ADMIN_USER) {
+    if (!user || user.type !== UserTypes.ADMIN_USER) {
         const err = new NotFoundError(`Invalid user. Please login again`)
         return res.status(err.statusCode).send(err.message)
     }
     loanService.updateLoanStatus(req.params.id, req.query.action as string)
-    .then((updateLoan)=>{
-        return res.json({message: 'loan approved', updatedLoan: {... updateLoan}})
-    })
-    .catch((error)=>{
-        return res.status(400).send(
-        `loan approval fail. error: ${error.message}`
-    )})
+        .then((updateLoan) => {
+            return res.json({ message: 'loan approved', updatedLoan: { ...updateLoan } })
+        })
+        .catch((error) => {
+            return res.status(400).send(
+                `loan approval fail. error: ${error.message}`
+            )
+        })
 }
 
 const userRepayment: IController = async (req, res) => {
     const userId = req.session.userId
     const loanId = req.params.loanId
     const amount = req.body.amount
-    if(!userId) {
+    if (!userId) {
         const err = new NotFoundError(`User not logged in`)
         return res.status(err.statusCode).send(err.message)
     }
     const user = await userService.getUserById(userId)
-    if(!user || user.type !== UserTypes.USER) {
+    if (!user || user.type !== UserTypes.USER) {
         const err = new NotFoundError(`Invalid user. Please login again`)
         return res.status(err.statusCode).send(err.message)
     }
     repaymentService.addRepayment(userId, Number(loanId), amount)
-    .then((_) => {
-        return res.json({message: 'repayment successful'})
-    })
-    .catch((err) => {
-        return res.status(err.statusCode).send(err.message)
-    })
+        .then((_) => {
+            return res.json({ message: 'repayment successful' })
+        })
+        .catch((err) => {
+            return res.status(err.statusCode).send(err.message)
+        })
 }
 
 export default {

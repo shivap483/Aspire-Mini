@@ -10,12 +10,12 @@ export class User extends DatetimeEntity {
 
     @Column({ name: 'email' }) email: string;
 
-    @Column({ name: 'name'}) userName: string;
+    @Column({ name: 'name' }) userName: string;
 
-    @Column({ name: 'password'}) password: string;
+    @Column({ name: 'password' }) password: string;
 
     @Column({ name: 'type' }) type: UserTypes;
 
-    @OneToMany( (type) => Loan, (loan) => loan.user ) loans: Loan[]
+    @OneToMany((type) => Loan, (loan) => loan.user) loans: Loan[]
 
 }

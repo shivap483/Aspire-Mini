@@ -1,11 +1,11 @@
 import IController from "IController";
 import userService from "../services/user.service";
 
-const createUser: IController = async(req, res) => {
+const createUser: IController = async (req, res) => {
 
     userService.createUser(req.body)
         .then((userId) => {
-             return res.send(`User created successfully. userId: ${userId}`)
+            return res.send(`User created successfully. userId: ${userId}`)
         })
         .catch((err) => {
             return res.status(err.statusCode).send(err.message)
@@ -13,7 +13,7 @@ const createUser: IController = async(req, res) => {
 }
 
 const login: IController = async (req, res) => {
-    try{
+    try {
         if (req.session.email && req.session.email === req.body.email) {
             return res.send(`User already logged in.`)
         }
@@ -23,13 +23,14 @@ const login: IController = async (req, res) => {
         req.session.userId = user.id;
         req.session.email = user.email
         return res.send(`Login successful. Welcome ${user.userName}!`)
-    } catch(err) {
+    } catch (err) {
         console.log(`Login failed. Error: ${err}`)
         return res.status(err.statusCode).send(`Login failed. Check credentials and try again.`)
     }
 }
+
 const adminLogin: IController = async (req, res) => {
-    try{
+    try {
         if (req.session.email && req.session.email === req.body.email) {
             return res.send(`Admin already logged in.`)
         }
@@ -39,13 +40,13 @@ const adminLogin: IController = async (req, res) => {
         req.session.userId = user.id;
         req.session.email = user.email
         return res.send(`Login successful. Welcome ${user.userName}!`)
-    } catch(err) {
+    } catch (err) {
         console.log(`Login failed. Error: ${err}`)
         return res.status(err.statusCode).send(`Login failed. Check credentials and try again.`)
     }
 }
 
-export default{
+export default {
     createUser,
     login,
     adminLogin

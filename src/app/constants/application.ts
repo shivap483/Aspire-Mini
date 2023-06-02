@@ -1,4 +1,4 @@
-const base ='/'
+const base = '/'
 
 export default {
     url: {

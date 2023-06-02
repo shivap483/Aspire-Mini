@@ -3,7 +3,7 @@ import { Loan } from "../entities/loan.entity"
 import { LoanModel } from "../models/loan.model";
 import loanUtils from "../utils/loan.utils";
 
-const createLoan =async (loan: LoanModel) => {
+const createLoan = async (loan: LoanModel) => {
     const newLoan = new Loan();
     loanUtils.mapLoanModelToEntity(newLoan, loan)
     db.loans.set(newLoan.id, newLoan)
@@ -12,10 +12,10 @@ const createLoan =async (loan: LoanModel) => {
 
 const getLoans = async (userId?: number) => {
     const loans = Array.from(db.loans.values())
-    if(userId) {
+    if (userId) {
         const data = []
-        for(const loan of loans) {
-            if(loan.userId === userId){
+        for (const loan of loans) {
+            if (loan.userId === userId) {
                 data.push(loan)
             }
         }
@@ -31,12 +31,12 @@ const getLoanById = async (loanId?: number) => {
 }
 
 
-const updateLoan = async(loan: Loan) => {
+const updateLoan = async (loan: Loan) => {
     db.loans.set(loan.id, loan)
 }
 
 export default {
-    createLoan, 
+    createLoan,
     getLoans,
     getLoanById,
     updateLoan,

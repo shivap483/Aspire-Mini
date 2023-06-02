@@ -5,8 +5,7 @@ import userUtils from '../utils/user.utils'
 import { UserModel } from "../models/user.model";
 
 
-
-const createUser = async(user: UserModel) => {
+const createUser = async (user: UserModel) => {
     const newUser = new User()
     await userUtils.mapUserModel(newUser, user)
     db.users.set(newUser.id, newUser)
@@ -15,17 +14,17 @@ const createUser = async(user: UserModel) => {
 
 const getUserByEmail = async (email: string) => {
     const users = Array.from(db.users.values());
-        var currentUser: User;
-        for(const user of users) {
-            if(user.email === email){
-                currentUser = user;
-                break;
-            }
+    var currentUser: User;
+    for (const user of users) {
+        if (user.email === email) {
+            currentUser = user;
+            break;
         }
-        return currentUser
+    }
+    return currentUser
 }
 
-const getUserById = async(id: number) => {
+const getUserById = async (id: number) => {
     const user = await db.users.get(id)
     return user
 }

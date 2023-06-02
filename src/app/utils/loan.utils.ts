@@ -3,11 +3,11 @@ import { LoanStatus } from "../constants/enums/loan.status";
 import { Loan } from "../entities/loan.entity";
 import { LoanModel } from "../models/loan.model";
 
-const generateLoanId = async() => {
+const generateLoanId = async () => {
     return db.loans.size + 1;
 }
 
-const mapLoanModelToEntity = async(loanEntity: Loan, loanModel: LoanModel) => {
+const mapLoanModelToEntity = async (loanEntity: Loan, loanModel: LoanModel) => {
     loanEntity.id = loanModel.id
     loanEntity.paidAmount = 0
     loanEntity.frequency = loanModel.frequency
@@ -18,16 +18,16 @@ const mapLoanModelToEntity = async(loanEntity: Loan, loanModel: LoanModel) => {
     loanEntity.userId = loanModel.userId
 }
 
-const mapRequestBodyToLoanModel = async(reqBody: any, loanModel: LoanModel) => {
+const mapRequestBodyToLoanModel = async (reqBody: any, loanModel: LoanModel) => {
     loanModel.id = await generateLoanId()
     loanModel.excessAmount = 0
     loanModel.frequency = reqBody.frequency
     loanModel.loanAmount = reqBody.amount
-    loanModel.term = reqBody.term 
+    loanModel.term = reqBody.term
     loanModel.userId = reqBody.userId
 }
 
-const setLoanStatus = async(loan: Loan, action: string) => {
+const setLoanStatus = async (loan: Loan, action: string) => {
     let status = loan.status
     action = action.toLowerCase();
     switch (action) {
@@ -37,14 +37,14 @@ const setLoanStatus = async(loan: Loan, action: string) => {
         case "paid":
             status = LoanStatus.PAID
             break;
-    
+
         default:
             break;
     }
     loan.status = status
 }
 
-const setLoanPaidAmount = async(loan: Loan, amount: number) => {
+const setLoanPaidAmount = async (loan: Loan, amount: number) => {
     loan.paidAmount += amount
 }
 
