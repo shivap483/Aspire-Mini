@@ -45,4 +45,4 @@ This is a backend-only application, so it does not have a UI. To use the project
 ## Contact
 
 - Name: Shiva Prasad
-- Email: [shivap482@gmail.com](mailto:shivap482@gmail.com)
+- Email: [Gmail](mailto:shivap483@gmail.com)
