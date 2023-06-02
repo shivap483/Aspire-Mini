@@ -27,6 +27,11 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }))
+// root logger
+app.use((req, res, next) => {
+    console.log(`${req.method} ${req.path} - ${req.ip}`);
+    next();
+})
 // health check endpoint. we can checkdb connections here. currently dummy as there is not db for this project
 app.use('/', healthRoute);
 // routing the requests to appropriate routes
