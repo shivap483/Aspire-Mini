@@ -28,11 +28,7 @@ Prerequisites:
 
 2. Download the project and navigate to the root folder (`/Aspire-Mini`).
 
-3. Since the project uses TypeScript for its static typing and language features, you need to install TypeScript to compile .ts files. Run the command in the project root folder:
-   ```
-   npm install -g typescript
-   ```
-4. Download dependencies, Build and start the service by running the command:
+3. Download dependencies, Build and start the service by running the command:
    ```
    npm i && npm run start
    ```
