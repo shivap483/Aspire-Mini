@@ -45,7 +45,7 @@ const getRepaymentsByLoanId = async (loadId: number) => {
 }
 
 const addRepayment = async (userId: number, loanId: number, amount: number) => {
-    const loan: Loan = await loanService.getloanById(loanId)
+    const loan: Loan = await loanService.getLoanById(loanId)
     if (!loan) {
         throw new BadRequestError(`loan does not exist`)
     }

@@ -14,9 +14,9 @@ A mini version of Aspire loan disbursal and repayment system.
 1. Can create users
 2. User and admin login
 3. User can create loan (apply for loan)
-4. Admin can approve loan
-5. Users can see all their loans
-6. Admin can see loans of all users
+4. Users can see all their loans
+5. Admin can see loans of all users
+6. Admin can approve loan
 7. Users can do loan repayment
 
 ## Installation
@@ -29,20 +29,18 @@ Prerequisites:
 2. Download the project and navigate to the root folder (`/Aspire-Mini`).
 
 3. Since the project uses TypeScript for its static typing and language features, you need to install TypeScript to compile .ts files. Run the command in the project root folder:
-   - `npm install -g typescript`
-
-4. Download project dependencies by running the command:
-   - `npm install`
-
-5. Build the project by running the command:
-   - `npm run build`
-
-6. Start the service by running the command:
-   - `npm run start`
+   ```
+   npm install -g typescript
+   ```
+4. Download dependencies, Build and start the service by running the command:
+   ```
+   npm i && npm run start
+   ```
 
 ## Usage
 
 This is a backend-only application, so it does not have a UI. To use the project, install Postman and import the API collection included in the project.
+
 
 ## Contact
 

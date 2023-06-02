@@ -7,7 +7,7 @@ const generateUserId = async () => {
     return db.users.size + 1;
 }
 
-const mapUserModel = async (newUser: User, userModel: UserModel) => {
+const mapUserModelToEntity = async (newUser: User, userModel: UserModel) => {
     newUser.id = await generateUserId()
     newUser.userName = userModel.name
     newUser.email = userModel.email
@@ -29,6 +29,6 @@ const mapRequestBodyToUserModel = async (reqBody: any, userModel: UserModel) => 
 }
 
 export default {
-    mapUserModel,
+    mapUserModelToEntity,
     mapRequestBodyToUserModel
 }

@@ -6,7 +6,6 @@ export interface LoanModel {
     id: number,
     loanAmount: number,
     term: number,
-    excessAmount: number,
     frequency: LoanFrequency,
     repayments: Repayment[],
     status: LoanStatus,

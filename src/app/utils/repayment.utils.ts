@@ -35,7 +35,7 @@ const getRepaymentId = async () => {
 
 const getLatestPendingRepayment = async (repayments: Repayment[]) => {
     repayments.sort((a, b) => a.repaymentDate.getTime() - b.repaymentDate.getTime())
-    let latestPendingRepayment;
+    let latestPendingRepayment = null;
     for (const repayment of repayments) {
         if (repayment.status === RepaymentStatus.PENDING) {
             latestPendingRepayment = repayment
@@ -65,6 +65,7 @@ const getPendingRepayments = async (repayments: Repayment[]) => {
 }
 
 export default {
+    __private__: { getRepaymentId },
     getFrequency,
     mapRepamentModelToEntity,
     getLatestPendingRepayment,

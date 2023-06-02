@@ -1,4 +1,5 @@
 import db from "../config/db"
+import { LoanFrequency } from "../constants/enums/loan.frequency";
 import { LoanStatus } from "../constants/enums/loan.status";
 import { Loan } from "../entities/loan.entity";
 import { LoanModel } from "../models/loan.model";
@@ -20,8 +21,7 @@ const mapLoanModelToEntity = async (loanEntity: Loan, loanModel: LoanModel) => {
 
 const mapRequestBodyToLoanModel = async (reqBody: any, loanModel: LoanModel) => {
     loanModel.id = await generateLoanId()
-    loanModel.excessAmount = 0
-    loanModel.frequency = reqBody.frequency
+    loanModel.frequency = reqBody.frequency ?? LoanFrequency.WEEKLY
     loanModel.loanAmount = reqBody.amount
     loanModel.term = reqBody.term
     loanModel.userId = reqBody.userId
@@ -49,6 +49,9 @@ const setLoanPaidAmount = async (loan: Loan, amount: number) => {
 }
 
 export default {
+    __private__: {
+        generateLoanId
+    },
     mapLoanModelToEntity,
     mapRequestBodyToLoanModel,
     setLoanStatus,

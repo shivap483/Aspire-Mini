@@ -4,6 +4,7 @@ import loanService from "../services/loan.service";
 import userService from "../services/user.service";
 import { UserTypes } from "../constants/enums/user.types";
 import repaymentService from "../services/repayment.service";
+import { LoanFrequency } from "../constants/enums/loan.frequency";
 
 
 const createLoan: IController = async (req, res) => {
@@ -17,7 +18,10 @@ const createLoan: IController = async (req, res) => {
         const err = new NotFoundError(`Invalid user. Please login again`)
         return res.status(err.statusCode).send(err.message)
     }
-    loanService.createLoan(req.body, userId)
+    const amount = req.body.amount
+    const term = req.body.term
+    const frequency = req.body.frequency ?? LoanFrequency.WEEKLY
+    loanService.createLoan(amount, term, frequency, userId)
         .then((loan) => {
             return res.json({
                 message: "loan created",

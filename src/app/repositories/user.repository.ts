@@ -7,7 +7,7 @@ import { UserModel } from "../models/user.model";
 
 const createUser = async (user: UserModel) => {
     const newUser = new User()
-    await userUtils.mapUserModel(newUser, user)
+    await userUtils.mapUserModelToEntity(newUser, user)
     db.users.set(newUser.id, newUser)
     return newUser
 }
