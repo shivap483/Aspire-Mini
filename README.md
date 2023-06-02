@@ -1,8 +1,6 @@
 # Aspire-Mini
 
-[Insert project name and optional logo/banner]
-
-[Include a brief description or overview of the project.]
+A mini version of Aspire loan disbursal and repayment system.
 
 ## Table of Contents
 
@@ -13,52 +11,34 @@
 
 ## Features
 
-[List the key features and functionalities of your project. Provide a brief explanation of each feature.]
+1. Can create users
+2. User and admin login
+3. User can create loan(apply for loan)
+4. Admin can approve loan
+5. Users can see all their loans
+6. Admin can see loans of all users
+7. Users can do loan repayment
 
 ## Installation
 
-[Provide step-by-step instructions on how to install and set up your project. Include any dependencies or prerequisites that need to be installed.]
+Prerequisites:
+1. Install below softwares
+    - [Nodejs 12 or above](#https://nodejs.org/en)
+    - [Postman](#https://www.postman.com/downloads/) for tesing the application APIs.
+
+2. Download the project and navigate to the root folder.(`/Aspire-Mini`)
+
+2. Since the project uses typescript for it's static typing and language features, it needs typescript to compile .ts files.
+    - navigate to project root folder and run the command `npm install -g typescript`
+
+3. Download project dependencies by running the command `npm i` or `npm install`
+4. To build the project, run the command `npm run build`
+5. To start the service, run the comman `npm run start`
 
 ## Usage
 
-[Explain how to use your project. Provide examples or code snippets to demonstrate usage. Include any command-line commands or specific instructions.]
-
-## Configuration
-
-[If your project requires configuration, explain how to configure it. Provide details on any configuration files or environment variables that need to be set.]
-
-## Contributing
-
-[Encourage others to contribute to your project. Provide guidelines and instructions for how to contribute, including information on submitting bug reports, feature requests, and pull requests.]
-
-## License
-
-[Specify the license under which your project is released. If you're unsure, consult with your team or choose an open-source license like MIT or Apache 2.0.]
+This is purely backend and hence does not have any UI. to use the project, install postman and import the api collection that is inlcuded in the project
 
 ## Contact
-
-[Provide contact information for users to reach out with questions or feedback. You can include your email address or link to a dedicated support channel or forum.]
-
-## Acknowledgements
-
-[If your project uses third-party libraries, frameworks, or resources, acknowledge and give credit to their authors or maintainers.]
-
-## Frequently Asked Questions (FAQ)
-
-[Include a section for frequently asked questions, if applicable.]
-
-## Troubleshooting
-
-[Provide guidance on troubleshooting common issues or errors users may encounter.]
-
-## Changelog
-
-[Keep track of changes and updates to your project. Include version numbers, release dates, and a summary of changes.]
-
-## Roadmap
-
-[Outline future plans or features you intend to implement in upcoming versions.]
-
-Remember to customize the sections and content to fit your specific project. A good README file is clear, concise, and informative. It helps users understand your project and encourages them to engage and contribute.
-
-Feel free to modify and expand this template as needed to best showcase your project. Good luck!
+### Name: Shiva Prasad
+### Email: [Gmail](#mailto:shivap482@gmail.com)
