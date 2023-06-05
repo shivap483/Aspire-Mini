@@ -78,15 +78,20 @@ const addRepayment = async (userId: number, loanId: number, amount: number) => {
     await repaymentRepository.updateRepayment(repaymentToBeAdded)
     const excessAmount = repaymentToBeAdded.paidAmount - repaymentToBeAdded.repaymentAmount
     const pendingRepayments: Repayment[] = await repaymentRepository.getPendingRepaymentsByLoanId(loanId)
+    let excessPaidRepayments = 0
     if (excessAmount > 0 && pendingRepayments.length > 0) {
         const repaymentAdjustAmount = parseFloat((excessAmount / pendingRepayments.length).toFixed(5));
         for (const repayment of pendingRepayments) {
             repayment.repaymentAmount = parseFloat((repayment.repaymentAmount - repaymentAdjustAmount).toFixed(5));
+            if (repayment.paidAmount === repayment.repaymentAmount) {
+                repayment.status === RepaymentStatus.PAID;
+                excessPaidRepayments += 1
+            }
             await repaymentRepository.updateRepayment(repayment)
         }
     }
     await loanService.updateLoanPaidAmount(loanId, amount)
-    if (pendingRepayments.length === 0) {
+    if (pendingRepayments.length === 0 || pendingRepayments.length === excessPaidRepayments) {
         loanService.updateLoanStatus(String(loanId), "paid")
     }
     console.log(`repayment done for loan: ${loan.id}\n repayment:[${JSON.stringify(repaymentToBeAdded)}]`)

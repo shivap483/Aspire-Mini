@@ -37,6 +37,9 @@ Prerequisites:
 
 This is a backend-only application, so it does not have a UI. To use the project, install Postman and import the API collection included in the project.
 
+## LLD
+Please find the design document in github wiki [here](https://github.com/shivap483/Aspire-Mini/wiki/Aspire-Mini-LLD).
+
 
 ## Contact
 
