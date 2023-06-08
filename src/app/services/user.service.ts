@@ -12,7 +12,7 @@ const createUser = async (requestBody: any) => {
 
     const currentUser = await userRepository.getUserByEmail(user.email)
     if (currentUser) {
-        throw new DuplicateItemError(`user already exists with email: ${user.email}`)
+        throw new DuplicateItemError(`user already exists with email: ${JSON.stringify(currentUser)}`)
     }
     const newUser = await userRepository.createUser(user)
     console.log(`created user: ${JSON.stringify(newUser)}`)
